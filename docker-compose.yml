@@ -1,0 +1,25 @@
+version: "3.9"
+services:
+  api:
+    container_name: ie-back-api
+    build: .
+    restart: "no"
+    volumes:
+      - ".:/usr/src/app"
+    ports:
+      - "5000:8080"
+    env_file:
+      - .env
+    command: sh -c "node asd.js"
+
+  db:
+    container_name: ie-back-db
+    image: mysql
+    restart: "no"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - ".docker/mysql:/var/lib/mysql"
+    ports:
+      - 3306:3306
+    command: --default-authentication-plugin=mysql_native_password
