@@ -11,9 +11,18 @@ O que nós vamos ver nesse curso:
 1. Banco de dados (mySQL)
 
    1. DER - Diagrama Entidade-Relacionamento
+      [Referencia do banco](https://docs.google.com/spreadsheets/d/1oJnHpOxorjzhzeLI-ZzpYWDiMFlo2jCnPIpRiTWm8fU/edit#gid=1414772217)
+      - Belongs to
+      - Has one
+      - Has many
+      - Many to many
+
+1. Criação dos serviços (Creation of the services)
 
 1. REST API (node.js)
+   1. REST API
    1. express.js (web framework)
+   1. Criação de rotas (routes creation)
    1. objection.js (ORM)
    1. Documentação da API (Stoplight)
    1. Criação da API
@@ -34,3 +43,7 @@ O que nós vamos ver nesse curso:
 [Table plus](https://tableplus.com/) Gerenciador de banco de dados
 
 [Stoplight](https://stoplight.io/) Documentação API
+
+[Workbench](https://dev.mysql.com/downloads/workbench/)
+
+[Postman](https://postman.com)
