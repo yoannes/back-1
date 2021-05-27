@@ -3,6 +3,7 @@ require("dotenv").config()
 const express = require("express")
 const bodyParser = require("body-parser")
 const cors = require("cors")
+const routes = require("./routes")
 
 const port = process.env.PORT
 
@@ -16,14 +17,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 // Roteador
-const router = express.Router()
-
-router.get("/", (req, res) => {
-  console.log("[recebido uma chamada]...", req.body)
-  res.json({ status: "OK", body: req.body })
-})
-
-app.use(router)
+app.use(routes)
 
 app.listen(port, () => {
   console.log(`Server Started at ${port}`)
