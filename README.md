@@ -23,6 +23,7 @@ O que nós vamos ver nesse curso:
    1. REST API
    1. express.js (web framework)
    1. Criação de rotas (routes creation)
+   1. Migrations (knex)
    1. objection.js (ORM)
    1. Documentação da API (Stoplight)
    1. Criação da API
