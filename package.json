@@ -18,6 +18,7 @@
     "objection": "^2.2.15"
   },
   "devDependencies": {
+    "@types/node": "^15.12.1",
     "nodemon": "^2.0.7"
   },
   "repository": {

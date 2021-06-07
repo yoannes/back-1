@@ -26,7 +26,8 @@ O que nós vamos ver nesse curso:
    1. Migrations (knex)
    1. objection.js (ORM)
    1. Documentação da API (Stoplight)
-   1. Criação da API
+   1. Controladores
+   1. Criação da API (TDD)
       1. Criação dos testes (mocha)
       1. Criação das rotas
       1. Criação dos modelos

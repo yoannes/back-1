@@ -4,7 +4,7 @@ const defaultColumns = (knex, table) => {
   created(knex, table)
   updated(knex, table)
 
-  table.integer("deleted_at").unsigned().defaultTo(0)
+  table.integer("deleted_at").unsigned()
 }
 
 const created = (knex, table) => {
