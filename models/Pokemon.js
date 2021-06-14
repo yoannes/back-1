@@ -3,11 +3,11 @@ const { Model } = require("objection")
 Model.knex(require("../db/knex"))
 
 class Pokemon extends Model {
-  id!: number
-  created_at!: string
-  updated_at!: string
-  deleted_at!: number | null
-  name!: string
+  // id!: number
+  // created_at!: string
+  // updated_at!: string
+  // deleted_at!: number | null
+  // name!: string
 
   static get tableName() {
     return "pokemons"

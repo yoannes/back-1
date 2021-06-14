@@ -1,4 +1,6 @@
 const express = require("express")
+const Login = require("../../controllers/login")
+const Signup = require("../../controllers/signup")
 
 const router = express.Router()
 
@@ -6,9 +8,7 @@ router.get("/", (req, res) => {
   res.send("V1 do nosso API")
 })
 
-router.post("/login", (req, res) => {
-  console.log("[/login]...", req.body)
-  return res.json({ status: "WRONG_USER" })
-})
+router.post("/login", Login)
+router.post("/signup", Signup)
 
 module.exports = router

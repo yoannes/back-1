@@ -1,21 +1,24 @@
 const { Model } = require("objection")
+const bcrypt = require("bcrypt")
 
 Model.knex(require("../db/knex"))
 
-class User extends Model {
-  id!: number
-  created_at!: string
-  updated_at!: string
-  deleted_at!: number | null
-  name!: string
-  email!: string
+const saltRounds = 10
+const hashPwd = (pwd) => bcrypt.hashSync(pwd, saltRounds)
 
+class User extends Model {
   static get tableName() {
     return "users"
   }
 
   static get idColumn() {
     return "id"
+  }
+
+  $beforeInsert() {
+    if (this.password) {
+      this.password = hashPwd(this.password)
+    }
   }
 
   static get jsonSchema() {
@@ -31,6 +34,8 @@ class User extends Model {
         deleted_at: { type: ["integer", "null"] },
         name: { type: "string", maxLength: 45 },
         email: { type: "string", maxLength: 100 },
+        password: { type: "string", maxLength: 255 },
+        username: { type: "string", maxLength: 100 },
       },
     }
   }
@@ -58,22 +63,30 @@ class User extends Model {
 
   static get modifiers() {
     return {
-      simpleSelect(builder: any) {
+      simpleSelect(builder) {
         builder.select(["users.id", "users.name"])
       },
     }
   }
 
-  async Load() {
-    return this.query().select().limit(10).orderBy("updated_at", "desc")
+  comparePwd(password) {
+    return bcrypt.compareSync(password, this.password)
   }
 
-  async LoadById(id: number) {
-    return this.query().select().where("id", id)
+  static async Load() {
+    return User.query().select().limit(10).orderBy("updated_at", "desc")
+  }
+
+  static async LoadById(id) {
+    return User.query().select().where("id", id)
+  }
+
+  static async LoadByUser(username) {
+    return User.query().select().where("username", username).first()
   }
 
   async Insert(content) {
-    return this.query().insert(content)
+    return User.query().insert(content)
   }
 }
 

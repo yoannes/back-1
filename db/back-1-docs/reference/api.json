@@ -68,7 +68,11 @@
                   "password": {
                     "type": "string"
                   }
-                }
+                },
+                "required": [
+                  "username",
+                  "password"
+                ]
               }
             }
           }
