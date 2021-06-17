@@ -1,4 +1,5 @@
 const User = require("../models/User")
+const { jwtSign } = require("../helpers/jwt")
 
 module.exports = async function Login(req, res) {
   console.log("[login]...", req.body)
@@ -19,5 +20,15 @@ module.exports = async function Login(req, res) {
     return res.status(401).json({ status: "WRONG_PASSWORD" })
   }
 
-  return res.json({ status: "OK" })
+  return res.json({
+    status: "OK",
+    result: {
+      id: user.id,
+      name: user.name,
+      username: user.username,
+      email: user.email,
+      created_at: user.created_at,
+      token: jwtSign(user.id),
+    },
+  })
 }

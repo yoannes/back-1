@@ -78,7 +78,7 @@ class User extends Model {
   }
 
   static async LoadById(id) {
-    return User.query().select().where("id", id)
+    return User.query().select().findById(id) // => users
   }
 
   static async LoadByUser(username) {
