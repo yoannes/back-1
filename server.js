@@ -5,7 +5,7 @@ const bodyParser = require("body-parser")
 const cors = require("cors")
 const routes = require("./routes")
 
-const port = process.env.PORT
+const port = process.env.NODE_ENV === "test" ? 8081 : process.env.PORT
 
 const app = express()
 

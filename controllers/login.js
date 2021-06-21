@@ -2,7 +2,7 @@ const User = require("../models/User")
 const { jwtSign } = require("../helpers/jwt")
 
 module.exports = async function Login(req, res) {
-  console.log("[login]...", req.body)
+  // console.log("[login]...", req.body)
 
   if (!req.body.username) {
     return res.status(400).json({ status: "NO_USER" })

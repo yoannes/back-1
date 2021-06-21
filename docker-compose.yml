@@ -10,7 +10,7 @@ services:
       - "5000:8080"
     env_file:
       - .env
-    command: sh -c "npm run dev"
+    command: sh -c "npm i && npm run dev"
 
   ie-back-db:
     container_name: ie-back-db

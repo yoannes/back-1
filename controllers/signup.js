@@ -2,7 +2,7 @@ const User = require("../models/User")
 const { jwtSign } = require("../helpers/jwt")
 
 module.exports = async function Signup(req, res) {
-  console.log("[signup]...", req.body)
+  // console.log("[signup]...", req.body)
 
   if (!req.body.name) {
     return res.status(400).json({ status: "NO_NAME" })
@@ -25,7 +25,7 @@ module.exports = async function Signup(req, res) {
   })
 
   if (user instanceof User) {
-    return res.json({
+    return res.status(201).json({
       status: "OK",
       result: {
         id: user.id,

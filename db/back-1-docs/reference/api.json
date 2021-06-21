@@ -29,7 +29,13 @@
                   "type": "object",
                   "properties": {
                     "status": {
-                      "type": "string"
+                      "type": "string",
+                      "enum": [
+                        "OK",
+                        "USER_NOT_FOUND",
+                        "NO_USER",
+                        "NO_PASS"
+                      ]
                     },
                     "result": {
                       "$ref": "#/components/schemas/LoginObj"
@@ -47,7 +53,11 @@
                   "type": "object",
                   "properties": {
                     "status": {
-                      "type": "string"
+                      "type": "string",
+                      "enum": [
+                        "NO_USER",
+                        "NO_PASS"
+                      ]
                     }
                   }
                 }
@@ -81,6 +91,95 @@
           "User"
         ]
       }
+    },
+    "/signup": {
+      "get": {
+        "summary": "Signup",
+        "tags": [],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "OK"
+                      ]
+                    },
+                    "result": {
+                      "$ref": "#/components/schemas/LoginObj"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "result"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "NO_NAME",
+                        "NO_EMAIL",
+                        "NO_USER",
+                        "NO_PASS"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "status"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-SIGNUP",
+        "description": "cadastro",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "username": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "name",
+                  "username",
+                  "password",
+                  "email"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "parameters": []
     }
   },
   "components": {
