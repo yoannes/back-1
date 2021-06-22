@@ -180,6 +180,128 @@
         }
       },
       "parameters": []
+    },
+    "/me": {
+      "get": {
+        "summary": "Pegar cadastro do usuário",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "OK"
+                      ]
+                    },
+                    "result": {
+                      "$ref": "#/components/schemas/User"
+                    }
+                  },
+                  "required": [
+                    "status"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-me",
+        "description": "Busca cadastro do proprio usuario",
+        "security": [
+          {
+            "jwt-token": []
+          }
+        ]
+      }
+    },
+    "/me/pokemon/{pokemon_id}": {
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [],
+        "responses": {},
+        "operationId": "get-me-pokemon"
+      },
+      "post": {
+        "summary": "Comprar pokemon",
+        "operationId": "post-me-pokemon",
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "OK"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "status"
+                  ]
+                }
+              }
+            }
+          },
+          "": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "OK",
+                        "NO_PRICE"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Comprar pokemon",
+        "security": [
+          {
+            "jwt-token": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "price": {
+                    "type": "number"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "pokemon_id",
+          "in": "path",
+          "required": true
+        }
+      ]
     }
   },
   "components": {
@@ -207,6 +329,57 @@
             "type": "integer"
           }
         }
+      },
+      "User": {
+        "title": "User",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "username": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "pokemons": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Pokemon"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "username",
+          "email",
+          "pokemons"
+        ]
+      },
+      "Pokemon": {
+        "title": "Pokemon",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "price": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "price"
+        ]
       }
     },
     "securitySchemes": {

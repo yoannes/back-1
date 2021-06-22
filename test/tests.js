@@ -128,5 +128,39 @@ describe("Test", function () {
           done()
         })
     })
+
+    it("POST - userPokemon", (done) => {
+      request(server)
+        .post("/v1/me/pokemons/1")
+        .send({ price: 1 })
+        .set("Authorization", `Bearer ${user.token}`)
+        .then((res) => {
+          // console.log("[post userPokemon]...", res.statusCode, res.body)
+          expect(res.statusCode).to.equal(201)
+
+          done()
+        })
+    })
+
+    it("GET - me", (done) => {
+      request(server)
+        .get("/v1/me")
+        .set("Authorization", `Bearer ${user.token}`)
+        .then((res) => {
+          // console.log("[get me]...", res.statusCode, res.body)
+          expect(res.statusCode).to.equal(200)
+          expect(res.body.result.id).equal(user.id)
+          expect(res.body.result.name).equal(user.name)
+          expect(res.body.result.username).equal(user.username)
+          expect(res.body.result.email).equal(user.email)
+
+          res.body.result.pokemons.forEach((pokemon) => {
+            expect(pokemon.id).equal(1)
+            expect(pokemon.price).equal(1)
+          })
+
+          done()
+        })
+    })
   })
 })

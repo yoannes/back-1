@@ -54,6 +54,7 @@ class User extends Model {
             ModelClass: UserPokemon,
             from: "user_pokemons.user_id",
             to: "user_pokemons.pokemon_id",
+            extra: ["price"],
           },
           to: "pokemons.id",
         },
